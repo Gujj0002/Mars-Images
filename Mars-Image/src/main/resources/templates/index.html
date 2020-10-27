@@ -8,22 +8,33 @@
           crossorigin="anonymous">
 </head>
 <body>
-<h1> You're watching images of Mars!</h1>
+
 <div class="container">
-    <div class="row">
-        <div class="col-sm">
-           <img th:src="${images.photos[0].imgSrc}" class="img-fluid"/>
-        </div>
-        <div class="col-sm">
-            <img th:src="${images.photos[0].imgSrc}" class="img-fluid"/>
-        </div>
-        <div class="col-sm">
-            <img th:src="${images.photos[0].imgSrc}" class="img-fluid"/>
-        </div>
+    <h2> You're watching images of Mars!</h2>
+    <div class="btn-group btn-group-lg" role="group" style="margin: 2em 0em;">
+        <button type="button" class="btn btn-secondary" id="marsApiCuriosity">Curiosity</button>
+        <button type="button" class="btn btn-secondary" id="marsApiOpportunity">Opportunity</button>
+        <button type="button" class="btn btn-secondary" id="marsApiSpirit">Spirit</button>
     </div>
+    <div th:each="index : ${(#numbers.sequence(0,images.photos.size(),4))}" class="row" style="margin-bottom: 2em">
+        <div class="row">
+            <div class="col-sm" th:if="${(index < images.photos.size())}">
+                <img th:src="${images.photos[index].imgSrc}" class="img-fluid"/>
+            </div>
+            <div class="col-sm" th:if="${index+1 < images.photos.size()}">
+                <img th:src="${images.photos[index+1].imgSrc}" class="img-fluid"/>
+            </div>
+            <div class="col-sm" th:if="${index+2 < images.photos.size()}">
+                <img th:src="${images.photos[index+2].imgSrc}" class="img-fluid"/>
+            </div>
+            <div class="col-sm" th:if="${index+3 < images.photos.size()}">
+                <img th:src="${images.photos[index+3].imgSrc}" class="img-fluid"/>
+            </div>
+        </div>
 </div>
+    <script type="text/javascript" src="/js/index.js"></script>
+
 </body>
 </html>
 
-<!--
-<img th:each="photo : ${images.photos}" th:src="${photo.imgSrc}"/>-->
+

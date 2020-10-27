@@ -15,7 +15,7 @@ public class HomeController {
 
     @GetMapping("/mars")
     public String getView(ModelMap model){
-        MarsRoverImages images = marsImageService.getService();
+        MarsRoverImages images = marsImageService.getService("curiosity");
         model.put("images", images);
         return "index";
     }
